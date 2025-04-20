@@ -10,7 +10,17 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors({ origin: "https://test-fullstack-frontend-two.vercel.app" }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://test-fullstack-frontend-two.vercel.app",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 app.use(express.json());
 
 // List
@@ -31,6 +41,7 @@ app.get("/getUser/:id", (req, res) => {
 // Create
 app.post("/createUser", async (req, res) => {
   try {
+    console.log("CreateUser body:", req.body);
     const user = await UserModel.create(req.body);
     console.log("User Created:", user);
     res.json(user);
@@ -108,8 +119,10 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to mongoDB successfully!");
-    app.listen(process.env.PORT, () => {
-      console.log(`Node API app is running on port ${process.env.PORT}`);
+    app.listen(process.env.PORT || 4000, () => {
+      console.log(
+        `Node API app is running on port ${process.env.PORT || 4000}`
+      );
     });
   })
   .catch((err) => {
