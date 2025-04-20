@@ -14,7 +14,7 @@ app.use(cors({ origin: "https://test-fullstack-frontend-two.vercel.app" }));
 app.use(express.json());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Catch-all handler to serve index.html for React routes
 app.get("*", (req, res) => {
