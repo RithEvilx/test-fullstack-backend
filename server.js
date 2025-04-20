@@ -10,16 +10,17 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://test-fullstack-frontend-nine.vercel.app" }));
 app.use(express.json());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "client", "dist")));
 
 // Catch-all handler to serve index.html for React routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
+
 
 // List
 app.get("/", (req, res) => {
