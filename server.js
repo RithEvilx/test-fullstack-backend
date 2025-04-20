@@ -10,7 +10,7 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors({ origin: "https://test-fullstack-frontend-nine.vercel.app" }));
+app.use(cors({ origin: "https://test-fullstack-frontend-two.vercel.app" }));
 app.use(express.json());
 
 // Serve static files from the React app
